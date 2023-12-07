@@ -336,6 +336,7 @@ resource "aws_security_group" "vpc-ping" {
 module "server" {
   source    = "./modules/server"
   ami       = data.aws_ami.ubuntu_22_04.id
+  size      = "t2.micro"
   subnet_id = aws_subnet.public_subnets["public_subnet_3"].id
   security_groups = [
     aws_security_group.vpc-ping.id,
@@ -349,6 +350,10 @@ output "public_ip" {
 }
 output "public_dns" {
   value = module.server.public_dns
+}
+
+output "size" {
+  value = module.server.size
 }
 
 module "server_subnet_1" {
