@@ -3,6 +3,9 @@ terraform {
     bucket = "my-terraform-state-tl"
     key    = "prod/aws_infra"
     region = "us-east-1"
+
+    dynamodb_table = "terraform-lock"
+    encrypt        = true
   }
   required_version = ">=1.0.0"
   required_providers {
